@@ -1,13 +1,26 @@
 require_relative 'node'
-
+# require 'movies'
+require 'pry'
 
 class BinarySearchTree
 
 def initialize
   @root = nil
   @sort = []
+  @movies = {}
+  @lines = []
+  @title = ''
 end
-
+def load (data)
+  file = File.open(data, "r")
+   while (@line = file.gets)
+      @title = @line.split(',').pop.chomp
+      @value =  @line.split(',').shift.to_i
+      @movies[@value]= @title
+      insert(@value, @title)
+   end
+   @movies.keys.count
+end
 def insert(new_node_value, movie_name, node = @root, depth = 1)
     if @root.nil?
        @root = Node.new(new_node_value, movie_name)
@@ -15,6 +28,7 @@ def insert(new_node_value, movie_name, node = @root, depth = 1)
     elsif new_node_value < node.value
           if node.left.nil?
              node.left = Node.new(new_node_value, movie_name, depth +=1)
+            # binding.pry#  p "#{@valu}"bind
              depth
           else
              insert(new_node_value, movie_name, node.left, depth+=1)
@@ -22,7 +36,7 @@ def insert(new_node_value, movie_name, node = @root, depth = 1)
     elsif new_node_value > node.value
           if node.right.nil?
              node.right = Node.new(new_node_value, movie_name, depth+=1)
-              depth
+            depth
           else
              insert(new_node_value, movie_name, node.right, depth +=1)
           end
@@ -69,17 +83,42 @@ def min(node = @root)
        min  # map x(node.right)
     end
 end
-def sort (node = @root)
-  @sort << {node.value => node.movie_name}
-  if !node.left.nil? || !node.right.nil?
-    sort(node.left)
-    sort(node.right)
-  else
-    return
-    # !node.right.nil? && node.right.value > node.value
-    #  sort << node.right.value
-    #  sort(node.right)# map x(node.right)
-  end
- p sort
+
+  def sort (node = @root)
+    if node.left.nil?
+      @sort << {node.value => node.movie_name}
+     if !node.right.nil?
+        sort(node.right)
+      else
+        return
+      end
+    else
+        @sort.push << {node.value => node.movie_name}
+         sort(node.left)
+      if !node.right.nil?
+        # @sort << node.value
+        sort(node.right)
+      end
+    end
+     @sort.sort_by { |hsh| hsh.keys }
 end
+    # find l most node
+        # if there is one, that becomes the current node
+    # add to array
+    # check r child
+      # True- sort(r.child)
+      #false -return
+    # if !node.left.nil? && !node.right.nil?
+    #   if node.left.value < node.value
+    #   @sort << {node.value => node.movie_name}
+    #   sort(node.left)
+    # else
+    #   @sort << {node.value => node.movie_name}
+    #   sort(node.right)
+    # end
+    #   # sort(node.right)
+    # else
+    #     return
+    # end
+
 end
