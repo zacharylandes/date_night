@@ -22,18 +22,9 @@ class BinarySearchTreeTest < Minitest::Test
   def test_it_can_insert_and_return_more_node_depths
 
     tree = BinarySearchTree.new
-    tree.insert(18, "matrix")
-    tree.insert(13,"dumbness")
-    tree.insert(4,"smartness")
-    tree.insert(22, "matrix")
-    tree.insert(33,"dumbness")
-    tree.insert(5,"smartness")
-    tree.insert(42, "matrix")
-    tree.insert(27,"dumbness")
-    tree.insert(3,"smartness")
-    tree.insert(10,"matrix")
+    tree.load('movies.txt')
 
-    assert_equal 5, tree.insert(30,"matrix")
+    assert_equal 6, tree.insert(202,"matrix")
 
   end
 
@@ -41,32 +32,36 @@ class BinarySearchTreeTest < Minitest::Test
   def test_if_it_includes_node
 
     tree = BinarySearchTree.new
-    tree.insert(18, "matrix")
-    tree.insert(10,"matrix")
-    tree.insert(13,"dumbness")
-    tree.insert(4,"Dark Knight")
-    tree.insert(11,"helloness")
-    tree.insert(21,"helloness")
-    tree.insert(123,"helloness")
-    tree.insert(24,"helloness")
-    tree.insert(102,"matrix")
-    tree.insert(10,"matrix")
-    assert tree.include?(102)
+    tree.load('movies.txt')
+
+    # tree.insert(18, "matrix")
+    # tree.insert(10,"matrix")
+    # tree.insert(13,"dumbness")
+    # tree.insert(4,"Dark Knight")
+    # tree.insert(11,"helloness")
+    # tree.insert(21,"helloness")
+    # tree.insert(123,"helloness")
+    # tree.insert(24,"helloness")
+    # tree.insert(102,"matrix")
+    # tree.insert(10,"matrix")
+    assert tree.include?(12)
   end
 
   def test_if_it_does_not_includes_node
     tree = BinarySearchTree.new
     tree.load('movies.txt')
-    tree.insert(18, "matrix")
-    tree.insert(13,"dumbness")
-    tree.insert(4,"Dark Knight")
-    tree.insert(11,"helloness")
-    tree.insert(21,"helloness")
-    tree.insert(123,"helloness")
-    tree.insert(24,"helloness")
-    tree.insert(102,"matrix")
-    tree.insert(10,"matrix")
-    assert tree.include?(12)
+    # tree.insert(18, "matrix")
+    # tree.insert(13,"dumbness")
+    # tree.insert(4,"Dark Knight")
+    # tree.insert(11,"helloness")
+    # tree.insert(21,"helloness")
+    # tree.insert(123,"helloness")
+    # tree.insert(24,"helloness")
+    # tree.insert(102,"matrix")
+    # tree.insert(10,"matrix")
+    refute tree.include?(128)
+    refute tree.include?(212)
+
   end
 
   def test_it_can_find_the_depth
