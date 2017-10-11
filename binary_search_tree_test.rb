@@ -25,40 +25,31 @@ class BinarySearchTreeTest < Minitest::Test
     tree.load('movies.txt')
 
     assert_equal 6, tree.insert(202,"matrix")
-
   end
 
-
   def test_if_it_includes_node
-
     tree = BinarySearchTree.new
-    tree.load('movies.txt')
 
-    # tree.insert(18, "matrix")
-    # tree.insert(10,"matrix")
-    # tree.insert(13,"dumbness")
-    # tree.insert(4,"Dark Knight")
-    # tree.insert(11,"helloness")
-    # tree.insert(21,"helloness")
-    # tree.insert(123,"helloness")
-    # tree.insert(24,"helloness")
-    # tree.insert(102,"matrix")
-    # tree.insert(10,"matrix")
-    assert tree.include?(12)
+    tree.insert(4,"Dark Knight")
+    tree.insert(11,"helloness")
+    tree.insert(21,"helloness")
+    tree.insert(123,"helloness")
+    tree.insert(24,"helloness")
+    tree.insert(102,"matrix")
+    tree.insert(10,"matrix")
+    assert tree.include?(21)
+    assert tree.include?(10)
+    assert tree.include?(102)
+
   end
 
   def test_if_it_does_not_includes_node
     tree = BinarySearchTree.new
     tree.load('movies.txt')
-    # tree.insert(18, "matrix")
-    # tree.insert(13,"dumbness")
-    # tree.insert(4,"Dark Knight")
-    # tree.insert(11,"helloness")
-    # tree.insert(21,"helloness")
-    # tree.insert(123,"helloness")
-    # tree.insert(24,"helloness")
-    # tree.insert(102,"matrix")
-    # tree.insert(10,"matrix")
+    tree.insert(123,"helloness")
+    tree.insert(24,"helloness")
+    tree.insert(102,"matrix")
+    tree.insert(10,"matrix")
     refute tree.include?(128)
     refute tree.include?(212)
 
@@ -72,7 +63,6 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 5, tree.depth_of(9)
     assert_equal 6, tree.depth_of(58)
     assert_equal 5, tree.depth_of(79)
-    # assert_equal 5, tree.depth_of(10)
   end
 
   def test_it_can_return_the_max
