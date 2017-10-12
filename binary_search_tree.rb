@@ -6,9 +6,10 @@ class BinarySearchTree
 
 def initialize
   @root = nil
-  @sort = []
+  @sorted_movies = []
   @movies = {}
   @lines = []
+  @node_count = 1
 end
 
 def insert(new_node_value, movie_name, current_node = @root, depth = 1)
@@ -41,8 +42,6 @@ def create_node(new_node_value, movie_name, current_node = @root, depth = 1)
      end
    end
 end
-
-
 
 def include?(node_value, current_node = @root)
     if node_value == current_node.value
@@ -82,26 +81,27 @@ def min(current_node = @root)
     min(current_node.left)
   else
   min[current_node.movie_name] = current_node.value
-     min  # map x(node.right)
+     min
+  end
+end
+
+def sort_left_nodes(current_node) #this creates some abstraction for the sort method
+  @sorted_movies.push << {current_node.value => current_node.movie_name}
+   sort(current_node.left)
+  if !current_node.right.nil?
+      sort(current_node.right)
   end
 end
 
   def sort (current_node = @root)
     if current_node.left.nil?
-      @sort << {current_node.value => current_node.movie_name}
+      @sorted_movies << {current_node.value => current_node.movie_name}
        if !current_node.right.nil?
           sort(current_node.right)
-        else
-          return
        end
-    else
-        @sort.push << {current_node.value => current_node.movie_name}
-         sort(current_node.left)
-        if !current_node.right.nil?
-            sort(current_node.right)
-        end
+    else sort_left_nodes(current_node)
     end
-     @sort.sort_by { |hash| hash.keys }
+    @sorted_movies.sort_by { |hash| hash.keys }
    end
 
  def load (data)
@@ -114,5 +114,20 @@ end
     end
      @movies.keys.count
  end
+#  def health(node_value, current_node = @root)
+#    if node_value < current_node.value
+#       if current_node.left.nil?
+#          @node_count +=1
+#       else @node+=1
+#         health(new_node_value, current_node.left)
+#       end
+#    else
+#      health(new_node_value, current_node.right)
+#       end
+#     end
+#
+# end
+#
+#  end
 
 end

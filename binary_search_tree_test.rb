@@ -7,9 +7,15 @@ require 'pry'
 
 
 class BinarySearchTreeTest < Minitest::Test
-  def test_it_can_insert_a_root_node
+  def test_it_can_create_a_root
     tree = BinarySearchTree.new
-    assert_equal 1, tree.insert(18, "movie")
+    assert_equal 1, tree.create_root(18, "movie")
+  end
+
+  def test_it_can_create_a_root_node
+    tree = BinarySearchTree.new
+    assert_equal 1, tree.create_root(18, "movie")
+    assert_equal 2, tree.create_node(12, "movie")
   end
 
   def test_it_can_insert_and_return_node_depth
@@ -45,7 +51,6 @@ class BinarySearchTreeTest < Minitest::Test
 
   def test_if_it_does_not_includes_node
     tree = BinarySearchTree.new
-    tree.load('movies.txt')
     tree.insert(123,"helloness")
     tree.insert(24,"helloness")
     tree.insert(102,"matrix")
@@ -77,13 +82,6 @@ class BinarySearchTreeTest < Minitest::Test
   def test_it_can_return_the_min
     tree = BinarySearchTree.new
      tree.load('movies.txt')
-    # tree.insert(18, "matrix")
-    # tree.insert(13,"dumbness")
-    # tree.insert(105,"matrix")
-    # tree.insert(111,"matrix")
-    # tree.insert(202,"matrix")
-    # tree.insert(20,"matrix")
-
     assert_equal ({" Cruel Intentions" => 0}), tree.min
     refute_equal ({"matrix" => 22}), tree.min
     refute_equal ({"matrix" => 1}), tree.min
@@ -93,16 +91,11 @@ class BinarySearchTreeTest < Minitest::Test
 
     tree = BinarySearchTree.new
      tree.load('movies.txt')
-    # tree.insert(18, "Forest Gump")
-    # tree.insert(14,"Star Wars")
-    # tree.insert(4,"Blade Runner")
-    # tree.insert(3,"Matrix")
-    # tree.insert(202,"Mars Attacks")
-    # tree.insert(20,"Truman Show")
+
     assert_equal ([{0=>" Cruel Intentions"}, {1=>" The Hollow"}, {2=>" Full Metal Jacket"}, {3=>" Frozen Planet: The Epic Journey"}, {4=>" Turbo Kid"},
-         {5=>" Bratz: Pampered Petz"}, {6=>" Para Elisa"}, {7=>" I Love You Phillip Morris"},
-         {8=>" Incompresa"}, {9=>" A Ballerina's Tale"}, {10=>" Visions"}, {11=>" Love"},
-         {12=>" Ungli"}, {13=>" 9 Muses of Star Empire"},
+          {5=>" Bratz: Pampered Petz"}, {6=>" Para Elisa"}, {7=>" I Love You Phillip Morris"},
+          {8=>" Incompresa"}, {9=>" A Ballerina's Tale"}, {10=>" Visions"}, {11=>" Love"},
+          {12=>" Ungli"}, {13=>" 9 Muses of Star Empire"},
           {14=>" Unsung Heroes: The Story of America's Female Patriots"}, {15=>" Stitches"}, {16=>" Out of My Hand"},
           {17=>" Meet My Valentine"}, {18=>" Care Bears: Journey to Joke-a-Lot"}, {19=>" Scooby-Doo 2: Monsters Unleashed"},
           {20=>" All That Glitters"}, {21=>" Stranger by the Lake"}, {22=>" Swim Little Fish Swim"}, {23=>" The Wild Thornberrys Movie"}, {24=>" My Side of the Mountain"}, {25=>" Assassination"}, {26=>" Hate Story 2"}, {27=>" Hate Crimes in the Heartland"}, {28=>" Suspect Zero"}, {29=>" Like Rain"}, {30=>" Breathe"},
@@ -120,6 +113,23 @@ class BinarySearchTreeTest < Minitest::Test
 
   end
 
+def test_health
+  skip
+  tree = BinarySearchTree.new
+  tree.insert(4,"Dark Knight")
+  tree.insert(11,"helloness")
+  tree.insert(21,"helloness")
+  tree.insert(123,"helloness")
+  tree.insert(24,"helloness")
+  tree.insert(102,"matrix")
+  tree.insert(10,"matrix")
+  tree.insert(65,"matrix")
+  tree.insert(34,"matrix")
+  tree.insert(90,"matrix")
+  tree.insert(80,"matrix")
+  assert_equal [123,6,40], tree.health(123)
+
+end
 def test_it_can_load_a_file
 
   tree = BinarySearchTree.new
