@@ -114,42 +114,42 @@ class BinarySearchTree
          @movies.keys.count
      end
 
-     def count_children(current_node)
-       if !current_node.left.nil?
-         @node_count +=1
-         count_children(current_node.left)
-       elsif !current_node.right.nil?
-         @node_count +=1
-         count_children(current_node.right)
-       else
-        #  count_children(current_node)
-     end
-   end
-
-     def health(node_value, current_node = @root.value)
-       if node_value < current_node
-          if !current_node.left.nil?
-              if node_value == current_node.value
-                  count_children(current_node.value)
-              else
-                health(current_node.left, node_value)
-              end
-          else health(node_value, current_node.right.value)
-          end
-       elsif node_value > current_node.value
-             if !current_node.right.nil?
-                 if node_value == current_node.value
-                     count_children(current_node.value)
-                 else
-                   health(current_node.right, node_value)
-                 end
-             else health(node_value, current_node.left.value)
-             end
-        else
-          count_children(current_node)
-        end
-        return @node_count
-
-      end
+  #    def count_children(current_node)
+  #      if !current_node.left.nil?
+  #        @node_count +=1
+  #        count_children(current_node.left)
+  #      elsif !current_node.right.nil?
+  #        @node_count +=1
+  #        count_children(current_node.right)
+  #      else
+  #       #  count_children(current_node)
+  #    end
+  #  end
+   #
+  #    def health(node_value, current_node = @root.value)
+  #      if node_value < current_node
+  #         if !current_node.left.nil?
+  #             if node_value == current_node.value
+  #                 count_children(current_node.value)
+  #             else
+  #               health(current_node.left, node_value)
+  #             end
+  #         else health(node_value, current_node.right.value)
+  #         end
+  #      elsif node_value > current_node.value
+  #            if !current_node.right.nil?
+  #                if node_value == current_node.value
+  #                    count_children(current_node.value)
+  #                else
+  #                  health(current_node.right, node_value)
+  #                end
+  #            else health(node_value, current_node.left.value)
+  #            end
+  #       else
+  #         count_children(current_node)
+  #       end
+  #       return @node_count
+   #
+  #     end
 
 end
