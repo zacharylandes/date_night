@@ -1,7 +1,7 @@
 gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative './binary_search_tree'
+require_relative '../lib/binary_search_tree'
 require 'pry'
 # require 'movies'
 
