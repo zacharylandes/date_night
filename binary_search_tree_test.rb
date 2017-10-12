@@ -113,8 +113,8 @@ class BinarySearchTreeTest < Minitest::Test
 
   end
 
-def test_health
-  skip
+def test_it_can_retrieve_health
+skip
   tree = BinarySearchTree.new
   tree.insert(4,"Dark Knight")
   tree.insert(11,"helloness")
@@ -130,6 +130,7 @@ def test_health
   assert_equal [123,6,40], tree.health(123)
 
 end
+
 def test_it_can_load_a_file
 
   tree = BinarySearchTree.new
